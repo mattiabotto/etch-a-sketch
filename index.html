@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Momo+Trust+Sans:wght@200..800&display=swap" rel="stylesheet">
+  <link href="./styles/style.css" rel="stylesheet">
+  <title>Etch-A-Sketch</title>
+</head>
+<body>
+  <header>
+    <h1>Etch-A-Sketch</h1>
+  </header>
+
+  <main>
+    <form class="settings">
+      <fieldset>
+        <label class="setting-heading" for="size">Size of the grid:</label>
+        <input id="size" type="text" placeholder="Enter size (16-100)">
+        <button>Create grid</button>
+        <p class="size-valid">Size: (16-100)</p>
+      </fieldset>
+      <hr>
+      <fieldset>
+        <legend class="setting-heading">Effetcs</legend>
+        <div class="check-setting">
+          <input id="rainbow" value="rainbow" type="checkbox">
+          <label for="rainbow">Rainbow</label>
+        </div>
+        <div class="check-setting">
+          <input id="progressive" value="progressive" type="checkbox">
+          <label for="progressive">Progressive</label>
+        </div>
+      </fieldset>
+    </form>
+
+    <div class="grid"></div>
+  </main>
+
+  <footer>
+    <p>&copy 2026 - Mattia Botto</p>
+  </footer>
+</body>
+</html>
