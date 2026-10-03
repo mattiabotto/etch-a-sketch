@@ -66,19 +66,14 @@ function colorSquare(e) {
   // Prevent the outer grid to be the target and get totally colored
   if (e.target.className !== 'square') return;
 
-  if (progressive) { // Regulate opacity: note that opacity property is a string
-    
-    if (!e.target.style.backgroundColor) { // First time a square is colored
-      e.target.style.opacity = '0.1';
-    }
-    else if (e.target.style.opacity < 1) { // Add 0.1 opacity until it reaches 1
-      e.target.style.opacity = `${+e.target.style.opacity + 0.1}`;
-    }
-  }
+  if (progressive && e.target.style.opacity < 1) { // Regulate opacity: note that opacity property is a string
+    // Add 0.1 opacity until it reaches 1
+    e.target.style.opacity = `${+e.target.style.opacity + 0.1}`;
+  } else e.target.style.opacity = '1'; // Default color full black
   
   if (rainbow) { // assign a random color
     e.target.style.backgroundColor = `rgb(${getRandomInt(256)}, ${getRandomInt(256)}, ${getRandomInt(256)})`;
-  } else e.target.style.backgroundColor = 'black'; // Default 
+  }
 }
 
 
@@ -88,6 +83,8 @@ function drawGrid(res) {
   // Squares are already wrapping thanks to flex wrap
   for (let i = 0; i < res * res; i++) {
     const newSquare = drawSquare();
+    newSquare.style.backgroundColor = 'black';
+    newSquare.style.opacity = '0';
     grid.appendChild(newSquare);
   }
   

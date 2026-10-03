@@ -143,7 +143,8 @@ button:focus {
   display: flex;
   flex-wrap: wrap;
   border: 5px solid #ff9811;
-  background-color: #F5F5F5;
+  background-color: black;
+  opacity: 0;
   border-radius: 4px;
 }
 
