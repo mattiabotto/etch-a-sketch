@@ -1,25 +1,44 @@
-drawGrid(50);
+const GRID_WIDTH = 500;
 
 const grid = document.querySelector('.grid');
+grid.style.width = `${GRID_WIDTH}px`;
+grid.style.height = `${GRID_WIDTH}px`;
+
+let res = 16; // Default resolution
+
+const clearBtn = document.querySelector('#clear-btn');
+clearBtn.addEventListener('click', clearGrid);
+
+
+drawGrid();
+
 grid.addEventListener('mouseover', colorBlack);
 
-// Problem: when the mouse goes out and returns back of the grid the background color of the grid is set to black
-// Also if the mouse enters from up or down the problems fires right away (but entering left and right not)
+// Clear the grid, removing all the squares and putting new ones
+function clearGrid(e) {
+  e.preventDefault();
+  for (let i = 0; i < res * res; i++) {
+    grid.firstChild.remove();
+  }
+
+  drawGrid();
+}
+
+
+// Color a square black when an event occurs
 function colorBlack(e) {
+  // Prevent the outer grid to be the target and get totally colored
   if (e.target.className !== 'square') return;
-  
+
   e.target.style.backgroundColor = 'black';
 }
 
-// Draw squares into a Grid of fixed WIDTH, with size squares per row
-function drawGrid(size) {
-  
-  const WIDTH = 500;
 
-  const grid = document.querySelector('.grid');
+// Draw squares into a Grid of fixed width, with size squares per row
+function drawGrid() {
 
   // Squares are already wrapping thanks to flex wrap
-  for (let i = 0; i < size * size; i++) {
+  for (let i = 0; i < res * res; i++) {
     const newSquare = drawSquare();
     grid.appendChild(newSquare);
   }
@@ -27,7 +46,7 @@ function drawGrid(size) {
 
   // Draw a square and return its reference
   function drawSquare() {
-    const squareWidth = `${WIDTH / size}px`;
+    const squareWidth = `${GRID_WIDTH / res}px`;
     const square = document.createElement('div');
 
     square.style.width = squareWidth;
