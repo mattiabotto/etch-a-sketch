@@ -29,7 +29,23 @@ resizeBtn.addEventListener('click', (e) => {
   drawGrid(res);
 });
 
-grid.addEventListener('mouseover', colorBlack);
+const rainbowBtn = document.querySelector('#rainbow');
+const progressiveBtn = document.querySelector('#progressive');
+
+let rainbow = false;
+let progressive = false;
+
+// Changing bool variables along with the checkboxes
+rainbowBtn.addEventListener('change', () => {
+  if (rainbowBtn.checked) rainbow = true;
+  else rainbow = false;
+});
+progressiveBtn.addEventListener('change', () => {
+  if (progressiveBtn.checked) progressive = true;
+  else progressive = false;
+});
+
+grid.addEventListener('mouseover', colorSquare);
 
 
 // Clear the grid, removing all the squares
@@ -40,12 +56,29 @@ function clearGrid() {
 }
 
 
-// Color a square black when an event occurs
-function colorBlack(e) {
+/**
+ * Color a square black when an event occurs
+ * Takes into consideration the options rainbow and progressive in an indipendent way
+ * Rainbow only changes the color (black is default)
+ * Progressive make so that passing on a square increment is opacity from 0 to 1, whatever color
+ */ 
+function colorSquare(e) {
   // Prevent the outer grid to be the target and get totally colored
   if (e.target.className !== 'square') return;
 
-  e.target.style.backgroundColor = 'black';
+  if (progressive) { // Regulate opacity: note that opacity property is a string
+    
+    if (!e.target.style.backgroundColor) { // First time a square is colored
+      e.target.style.opacity = '0.1';
+    }
+    else if (e.target.style.opacity < 1) { // Add 0.1 opacity until it reaches 1
+      e.target.style.opacity = `${+e.target.style.opacity + 0.1}`;
+    }
+  }
+  
+  if (rainbow) { // assign a random color
+    e.target.style.backgroundColor = `rgb(${getRandomInt(256)}, ${getRandomInt(256)}, ${getRandomInt(256)})`;
+  } else e.target.style.backgroundColor = 'black'; // Default 
 }
 
 
@@ -70,4 +103,11 @@ function drawGrid(res) {
     square.classList.add('square');
     return square;
   }
+}
+
+
+// Return a positive integer in the range 0 (inclusive) and max (exclusive)
+function getRandomInt(max) {
+
+  return Math.floor(Math.random() * max);
 }
