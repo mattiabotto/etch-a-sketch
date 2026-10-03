@@ -89,6 +89,31 @@ input[type=text] {
   padding: .7em;
   color:black;
   background-color: #ffd9a7;
+  border: none;
+  border-radius: 2px;
+}
+
+input[type=checkbox] {
+  width: 16px;
+  height: 16px;
+  background-color: #f5f5f5;
+  accent-color: #FF9E20;
+  border-radius: 2px;
+}
+
+input[type=checkbox],
+.check-setting label {
+  cursor: pointer;
+}
+
+*:focus {
+  outline: 2px solid black;
+  box-shadow: 0 0 0 3px #FF9E20;
+  border-radius: 2px;
+}
+
+button:focus {
+  border-radius: 24px;
 }
 
 
@@ -103,6 +128,7 @@ input[type=text] {
   width: 500px;
   height: 500px;
   background-color: #F5F5F5;
+  border-radius: 4px;
 }
 
 .square {
