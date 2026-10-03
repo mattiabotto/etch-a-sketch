@@ -6,22 +6,37 @@ grid.style.height = `${GRID_WIDTH}px`;
 
 let res = 16; // Default resolution
 
+drawGrid(res);
+
 const clearBtn = document.querySelector('#clear-btn');
-clearBtn.addEventListener('click', clearGrid);
+clearBtn.addEventListener('click', (e) => {
+  e.preventDefault(); // Avoid refreshing page
+  clearGrid();
+  drawGrid(res);
+});
 
+const resizeBtn = document.querySelector('#resize-btn');
+resizeBtn.addEventListener('click', (e) => {
+  e.preventDefault(); // Avoid refreshing page
 
-drawGrid();
+  const resInput = document.querySelector('#res');
+  const newRes = resInput.value;
+
+  if (newRes < 16 || newRes > 100) return;
+
+  clearGrid();
+  res = newRes;
+  drawGrid(res);
+});
 
 grid.addEventListener('mouseover', colorBlack);
 
-// Clear the grid, removing all the squares and putting new ones
-function clearGrid(e) {
-  e.preventDefault();
+
+// Clear the grid, removing all the squares
+function clearGrid() {
   for (let i = 0; i < res * res; i++) {
     grid.firstChild.remove();
   }
-
-  drawGrid();
 }
 
 
@@ -35,7 +50,7 @@ function colorBlack(e) {
 
 
 // Draw squares into a Grid of fixed width, with size squares per row
-function drawGrid() {
+function drawGrid(res) {
 
   // Squares are already wrapping thanks to flex wrap
   for (let i = 0; i < res * res; i++) {

@@ -18,10 +18,10 @@
   <main>
     <form class="settings">
       <fieldset>
-        <label class="setting-heading" for="size">Resolution:</label>
-        <input id="size" type="text" placeholder="Enter resolution (16-100)">
-        <button>Clear</button>
-        <p class="size-valid">Resolution: (16-100)</p>
+        <label class="setting-heading" for="res">Resolution (16-100):</label>
+        <input id="res" type="number" min="16" max="100" value="16" placeholder="(16-100)">
+        <button id="resize-btn">Apply and reset</button>
+        <!-- <p class="res-valid">Resolution: (16-100)</p> -->
       </fieldset>
       <hr>
       <fieldset>
@@ -34,7 +34,10 @@
           <input id="progressive" value="progressive" type="checkbox">
           <label for="progressive">Progressive</label>
         </div>
+        <hr>
+        <button id="clear-btn">Clear grid</button>
       </fieldset>
+      
     </form>
 
     <div class="grid"></div>

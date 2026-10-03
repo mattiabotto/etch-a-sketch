@@ -75,7 +75,7 @@ legend.setting-heading {
 hr {
   border-color: #FF9E20;
   margin: 0 auto 1rem;
-  width: 80%;
+  width: 90%;
 }
 
 .size-valid {
@@ -89,6 +89,7 @@ button {
   background-color: #ff9811;
   color:#F5F5F5;
   font-weight: 600;
+  min-width: 10em;
 }
 
 button:hover {
@@ -96,12 +97,18 @@ button:hover {
   cursor: pointer;
 }
 
-input[type=text] {
+input[type=number] {
   padding: .7em;
   color:black;
   background-color: #ffd9a7;
   border: none;
   border-radius: 2px;
+  min-width: 10em;
+  font-weight: 600;
+}
+
+input[type=number]:invalid {
+  background-color: rgb(255, 0, 0);
 }
 
 input[type=checkbox] {
