@@ -1,6 +1,17 @@
 drawGrid(50);
 
-// TODO: add comments
+const grid = document.querySelector('.grid');
+grid.addEventListener('mouseover', colorBlack);
+
+// Problem: when the mouse goes out and returns back of the grid the background color of the grid is set to black
+// Also if the mouse enters from up or down the problems fires right away (but entering left and right not)
+function colorBlack(e) {
+  if (e.target.className !== 'square') return;
+  
+  e.target.style.backgroundColor = 'black';
+}
+
+// Draw squares into a Grid of fixed WIDTH, with size squares per row
 function drawGrid(size) {
   
   const WIDTH = 500;
